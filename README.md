@@ -22,11 +22,11 @@ The purpose of this project is to explore and practice:
 
 - **C**
 - **libcurl**
-- **GTK 3.0**
+- **GTK 3.0** (soon)
 - **GCC**
 
 ## Run & Build
-
+### Running exe will build the project and execute it directly 
 ```bash
 ./exe
 ```

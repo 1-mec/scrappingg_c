@@ -24,38 +24,12 @@ The purpose of this project is to explore and practice:
 - **libcurl**
 - **GTK 3.0**
 - **GCC**
-- **Makefile** *(if you add one)*
 
-## Build
-
-Compile with:
+## Run & Build
 
 ```bash
-gcc *.c -o scraper $(pkg-config --cflags --libs gtk+-3.0 libcurl)
+./exe
 ```
-
-## Run
-
-```bash
-./scraper
-```
-
-## Project Structure
-
-```text
-.
-├── main.c
-├── curl.c
-├── curl.h
-├── file_related.c
-├── file_related.h
-├── inputs.c
-├── inputs.h
-├── utils.c
-├── utils.h
-└── README.md
-```
-
 ## Notes
 
 This project is for learning purposes only.

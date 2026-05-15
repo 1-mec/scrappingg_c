@@ -11,7 +11,7 @@
 
 void save_log(char * fragment,char * host,char * password,char * path,char * port,char * query,char * scheme,char * user,char * zoneid){
 
-    int fd = open("log.txt", O_WRONLY | O_CREAT | O_TRUNC , S_IRUSR | S_IWUSR);
+    int fd = open("results/log.txt", O_WRONLY | O_CREAT | O_TRUNC , S_IRUSR | S_IWUSR);
     if (fd == -1) {
         perror("open");
         exit(1);

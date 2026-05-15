@@ -40,7 +40,9 @@ void save_file_w_name(char * arg,char * name){
         exit(1);
     }
 
-    char * res = strcat(name ,".html");
+    
+    char * res ;
+    snprintf(res,strlen(name) + strlen(".htmlresults/\0"),"results/%s.html",name);
     FILE *fp = fopen(res, "w");
     flock( fileno(fp),LOCK_EX);
     curl_easy_setopt(easy, CURLOPT_URL, arg);
@@ -60,7 +62,7 @@ void save_file(char * arg){
         exit(1);
     }
 
-    FILE *fp = fopen("your_page.html", "w");
+    FILE *fp = fopen("results/your_page.html", "w");
     flock( fileno(fp),LOCK_EX);
     curl_easy_setopt(easy, CURLOPT_URL, arg);
     curl_easy_setopt(easy, CURLOPT_WRITEDATA, fp);

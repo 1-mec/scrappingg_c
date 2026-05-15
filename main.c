@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "curl.h"
-#include "file_related.h"
-#include "utils.h"
-#include "inputs.h"
+#include "header/curl.h"
+#include "header/file_related.h"
+#include "header/utils.h"
+#include "header/inputs.h"
+#include "ui_header/init_gtk.h"
 
-int main(){
+int main(int argc, char * argv[]){
 
     printf("=====================================\n");
 
@@ -38,14 +39,16 @@ int main(){
     char * url = params.result_url;
     char * file_name = params.file_name;
 
-    printf("%s\n",url);
-    printf("%s\n",file_name);
 
     if (params.bool_file == 1){
         save_file_w_name(url, file_name);
     } else {
         save_file(url);
     }
+
+    printf("%s\n",url);
+    printf("%s\n",file_name);
+    
 
     printf("=================info_curl===================\n");
     info_curl(h, &fragment,&host,&password,&path,&port,&query,&scheme, &user, &zoneid);
@@ -56,10 +59,10 @@ int main(){
     printf("----ok-----\n");
 
     printf("====================aff================\n");
-    aff( &fragment,&host,&password,&path,&port,&query,&scheme, &user, &zoneid);
+    aff( fragment,host,password,path,port,query,scheme,user,zoneid);
     printf("----ok-----\n");
 
-    printf("=====================read_file=================\narg = %s \n",url);
+    printf("=====================read_file=================\n");
     read_file(file_name);
     printf("----ok-----\n");
 
@@ -77,6 +80,13 @@ int main(){
 
     printf("====================================\n");
 
+    GtkApplication *app;
+    int status;
 
-    return 0;
+    app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+    g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+    status = g_application_run (G_APPLICATION (app), argc, argv);
+    g_object_unref (app);
+
+    return status;
 }

@@ -13,7 +13,7 @@ void save_log(char * fragment,char * host,char * password,char * path,char * por
 
     int fd = open("results/log.txt", O_WRONLY | O_CREAT | O_TRUNC , S_IRUSR | S_IWUSR);
     if (fd == -1) {
-        perror("open");
+        perror("open_save");
         exit(1);
     }
 
@@ -33,9 +33,14 @@ void save_log(char * fragment,char * host,char * password,char * path,char * por
 
 void read_file(char * file){
 
+    char * tmp = strdup(file);
+    ssize_t len = strlen(file)+strlen("results/")+1;
+    snprintf(file,len,"results/%s",tmp);
+    
+    
     int fd = open(file  , O_RDONLY );
     if (fd == -1){
-        perror("open");
+        perror("open_read");
         exit(1) ;
     }
 

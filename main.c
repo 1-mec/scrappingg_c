@@ -9,7 +9,7 @@
 int main(){
 
     printf("=====================================\n");
-
+    
     Params * res = malloc(sizeof(Params));  
     Params params = inputs_params();
     CURLU *h =curl_url();
@@ -38,14 +38,16 @@ int main(){
     char * url = params.result_url;
     char * file_name = params.file_name;
 
-    printf("%s\n",url);
-    printf("%s\n",file_name);
 
     if (params.bool_file == 1){
         save_file_w_name(url, file_name);
     } else {
         save_file(url);
     }
+
+    printf("%s\n",url);
+    printf("%s\n",file_name);
+    
 
     printf("=================info_curl===================\n");
     info_curl(h, &fragment,&host,&password,&path,&port,&query,&scheme, &user, &zoneid);

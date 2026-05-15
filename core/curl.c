@@ -40,9 +40,12 @@ void save_file_w_name(char * arg,char * name){
         exit(1);
     }
 
-    
-    char * res ;
-    snprintf(res,strlen(name) + strlen(".htmlresults/\0"),"results/%s.html",name);
+    int len = strlen(name)+strlen("results/")+1;
+    char * res = malloc(len);
+    snprintf(res,len,"results/%s",name);
+
+    printf("%s=====\n",res);
+
     FILE *fp = fopen(res, "w");
     flock( fileno(fp),LOCK_EX);
     curl_easy_setopt(easy, CURLOPT_URL, arg);

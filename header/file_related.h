@@ -13,7 +13,7 @@ void save_log(char * fragment,char * host,char * password,char * path,char * por
 void read_file(char *file);
 int get_nb_links(void);
 void save_lst(items * res , char * tmp , int index);
-items * get_lst(void);
+items * get_items(void);
 void init_lst(int max_links);
 items * init_items(void);
 void free_items(items * res);

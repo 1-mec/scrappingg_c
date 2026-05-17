@@ -13,7 +13,6 @@ int nb_links = 0;
 int max_links = 360;
 
 char ** lst ;
-items * test;
 
 void save_lst(items * res , char * tmp , int index){
     res[index].lst = malloc((strlen(tmp)+1));
@@ -26,11 +25,9 @@ items * init_items(){
     return test;
 }
 
-
 void free_items(items * res){
     for (int i  = 0; i < nb_links ; i++){
         free(res[i].lst);
-        free(res[i].index);
     }
     free(res);
 }
@@ -61,12 +58,11 @@ void save_log(char * fragment,char * host,char * password,char * path,char * por
 
 void read_file(char * file){
 
+    lst_w_index = init_items();
+
     char * tmp = strdup(file);
     ssize_t len = strlen(file)+strlen("results/")+1;
     snprintf(file,len,"results/%s",tmp);
-    
-
-    test =  init_items();
     
     int fd = open(file  , O_RDONLY );
     if (fd == -1){
@@ -80,7 +76,6 @@ void read_file(char * file){
     int cpt = 0;
     bool fst = false;
     ssize_t rd ;
-    lst_w_index = init_items();
 
 
     lst = malloc(max_links * sizeof(char *) );
@@ -108,7 +103,7 @@ void read_file(char * file){
                 int len = strlen(res)+strlen("lien = https\n")+1;
                 char * tmp = malloc(len);
 		
-		snprintf(tmp,len,"lien = https%s",res);
+		        snprintf(tmp,len,"lien = https%s",res);
                 lst_w_index[nb_links].lst = strdup(tmp);
                 lst_w_index[nb_links].index = 1+nb_links;
 
@@ -122,17 +117,11 @@ void read_file(char * file){
         }
         
     }
-    free(tmp);
 
     if (rd == -1) {
         perror("read");
     }
 
-    for( int i = 0; i < nb_links ; i++){
-        free(lst[i]);
-    }
-    free(lst);
-    
     printf("il y a %d liens\n",nb_links);
     printf("-> %s le 2eme\n",res);
 
@@ -142,11 +131,6 @@ void read_file(char * file){
 
 int get_nb_links(){
     return nb_links;
-}
-
-items * init_items(){
-    items * lst_w_index = malloc(sizeof(items)*max_links);
-    return lst_w_index;
 }
 
 items * get_items(){

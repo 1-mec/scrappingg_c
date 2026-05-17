@@ -9,11 +9,11 @@ void print_hello (GtkWidget *widget, gpointer   data){
 
 void aff_links(GtkWidget * widget,gpointer data){
     int links = get_nb_links();
-    items * lst = get_lst();
+    items * lst = get_items();
     GtkLabel * label;
     for(int i = 0 ; i < links ;i++){
       //set_label(lst[i]->lst);
-      g_print("-> %d ème %s",lst[i].index,lst[i].lst);
+      g_print("-> %d ème %s\n",lst[i].index,lst[i].lst);
     }
     //free_items(lst);
 }
